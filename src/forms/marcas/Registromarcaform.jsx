@@ -18,7 +18,6 @@ const Registromarcaform = () => {
     titulares: [initialValuesTitular],
     descripcion: "",
     enUso: "",
-    tieneEstablecimiento: "",
   };
 
   // TODO : Asignar maximos de caracteres
@@ -31,42 +30,39 @@ const Registromarcaform = () => {
     ),
     nombreMarca: Yup.string().required("Se requiere que ingreses un nombre"),
     logo: Yup.mixed().nullable(),
-    // titulares: Yup.array().of(
-    //   Yup.object({
-    //     tipoTitular: Yup.string().required(
-    //       "Se requiere que seleciones un tipo de titular"
-    //     ),
-    //     nombre: Yup.string().required("El nombre es requerido"),
-    //     apellidoPaterno: Yup.string().required(
-    //       "El apellido paterno es requerido"
-    //     ),
-    //     apellidoMaterno: Yup.string(),
-    //     nacionalidad: Yup.string().required("La nacionalidad es requerida"),
-    //     telefono: Yup.number()
-    //       .required("El teléfono es requerido")
-    //       .typeError("El teléfono solo debe contener números"),
-    //     email: Yup.string()
-    //       .required("El email es requerido")
-    //       .email("El email no es válido"),
-    //     ID: Yup.string(),
-    //     domicilio: Yup.object({
-    //       calle: Yup.string().required("La calle es requerida"),
-    //       numeroExterior: Yup.string().required(
-    //         "El número exterior es requerido"
-    //       ),
-    //       numeroInterior: Yup.string(),
-    //       colonia: Yup.string().required("La colonia es requerida"),
-    //       municipio: Yup.string().required("El municipio es requerido"),
-    //       estado: Yup.string().required("El estado es requerido"),
-    //       codigoPostal: Yup.string().required("El código postal es requerido"),
-    //     }),
-    //   })
-    // ),
-    // descripcion: Yup.string().required("La descripción es requerida"),
-    // enUso: Yup.string().required("Selecciona si la marca está en uso"),
-    // tieneEstablecimiento: Yup.string().required(
-    //   "Selecciona si la marca tiene establecimiento"
-    // ),
+    titulares: Yup.array().of(
+      Yup.object({
+        tipoTitular: Yup.string().required(
+          "Se requiere que seleciones un tipo de titular"
+        ),
+        nombre: Yup.string().required("El nombre es requerido"),
+        apellidoPaterno: Yup.string().required(
+          "El apellido paterno es requerido"
+        ),
+        apellidoMaterno: Yup.string(),
+        nacionalidad: Yup.string().required("La nacionalidad es requerida"),
+        telefono: Yup.number().typeError(
+          "El teléfono solo debe contener números"
+        ),
+        email: Yup.string()
+          .required("El email es requerido")
+          .email("El email no es válido"),
+        ID: Yup.string(),
+        domicilio: Yup.object({
+          calle: Yup.string().required("La calle es requerida"),
+          numeroExterior: Yup.string().required(
+            "El número exterior es requerido"
+          ),
+          numeroInterior: Yup.string(),
+          colonia: Yup.string(),
+          municipio: Yup.string().required("El municipio es requerido"),
+          estado: Yup.string().required("El estado es requerido"),
+          codigoPostal: Yup.string().required("El código postal es requerido"),
+        }),
+      })
+    ),
+    descripcion: Yup.string().required("La descripción es requerida"),
+    enUso: Yup.string().required("Selecciona si la marca está en uso"),
   });
 
   return (
@@ -186,6 +182,7 @@ const Registromarcaform = () => {
                 </label>
                 <ErrorMessage name="descripcion" render={renderError} />
               </div>
+              {/* TODO: Agregar las clases de productos */}
               <div>
                 <label>
                   ¿Está en uso?*
@@ -199,31 +196,6 @@ const Registromarcaform = () => {
                   </label>
                 </label>
                 <ErrorMessage name="enUso" render={renderError} />
-              </div>
-              <div>
-                <label>
-                  ¿Tu marca cuenta con algún establecimiento?*
-                  <label>
-                    Si
-                    <Field
-                      type="radio"
-                      name="tieneEstablecimiento"
-                      value={"true"}
-                    />
-                  </label>
-                  <label>
-                    No
-                    <Field
-                      type="radio"
-                      name="tieneEstablecimiento"
-                      value={"false"}
-                    />
-                  </label>
-                </label>
-                <ErrorMessage
-                  name="tieneEstablecimiento"
-                  render={renderError}
-                />
               </div>
             </div>
             <div>

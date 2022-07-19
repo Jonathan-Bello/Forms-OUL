@@ -23,8 +23,8 @@ const TitularesForm = ({ formikProps }) => {
                       name={`titulares[${index}].tipoTitular`}
                       placeholder="Titular"
                     >
-                      <option value="Fisica">Física</option>
-                      <option value="Moral">Moral</option>
+                      <option value="Fisica">Persona</option>
+                      <option value="Moral">Empresa</option>
                     </Field>
                   </label>
                   <ErrorMessage
