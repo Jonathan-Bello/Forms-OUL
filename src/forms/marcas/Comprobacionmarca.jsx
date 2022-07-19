@@ -1,8 +1,9 @@
 import { Field, FieldArray, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
+
 import renderError from "../utils/renderError";
 
-const Renovacionmarcaform = () => {
+const Comprobacionmarca = () => {
   const initMarca = {
     numeroRegistro: "",
     numeroExpediente: "",
@@ -44,7 +45,7 @@ const Renovacionmarcaform = () => {
 
   return (
     <div>
-      <h1>Renovación de marca</h1>
+      <h1>Comprobación de uso en línea</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -84,7 +85,7 @@ const Renovacionmarcaform = () => {
               <FieldArray name="marcas">
                 {({ push, remove }) => (
                   <div>
-                    <h3>Marcas</h3>
+                    <h3>Información de marca</h3>
                     {values.marcas.length > 0 &&
                       values.marcas.map((marca, index) => (
                         <div key={index}>
@@ -199,6 +200,7 @@ const Renovacionmarcaform = () => {
                 </div>
               </section>
             )}
+
             {values.tipoTitular === "personaMoral" && (
               <section>
                 <div>
@@ -216,6 +218,7 @@ const Renovacionmarcaform = () => {
                 </div>
               </section>
             )}
+
             <section>
               <label>
                 ¿Cuál es el nombre de tu marca?*
@@ -235,4 +238,4 @@ const Renovacionmarcaform = () => {
   );
 };
 
-export default Renovacionmarcaform;
+export default Comprobacionmarca;

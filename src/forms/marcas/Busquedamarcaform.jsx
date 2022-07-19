@@ -82,7 +82,7 @@ const Busquedamarcaform = () => {
           </div>
           <div>
             <label>
-              Apellido materno
+              Apellido materno<span>(opcional)</span>
               <Field
                 name="solicitante.apellidoMaterno"
                 type="text"
@@ -117,7 +117,7 @@ const Busquedamarcaform = () => {
             <ErrorMessage name="solicitante.email" render={renderError} />
           </div>
 
-          <div>
+          <section>
             <h4>Nombres de la marca</h4>
             <div>
               <label>
@@ -132,7 +132,7 @@ const Busquedamarcaform = () => {
             </div>
             <div>
               <label>
-                opcion 2
+                opcion 2<span>(opcional)</span>
                 <Field
                   name="nombresMarca.option2"
                   type="text"
@@ -143,7 +143,7 @@ const Busquedamarcaform = () => {
             </div>
             <div>
               <label>
-                opcion 3
+                opcion 3<span>(opcional)</span>
                 <Field
                   name="nombresMarca.option3"
                   type="text"
@@ -152,9 +152,9 @@ const Busquedamarcaform = () => {
               </label>
               <ErrorMessage name="nombresMarca.option3" render={renderError} />
             </div>
-          </div>
+          </section>
 
-          <div>
+          <section>
             <label>
               Breve descripción de los productos y/o servicios para los que
               utilizarás tu marca.*
@@ -166,7 +166,7 @@ const Busquedamarcaform = () => {
               />
             </label>
             <ErrorMessage name="descripcion" render={renderError} />
-          </div>
+          </section>
 
           <button type="submit">Enviar</button>
         </Form>

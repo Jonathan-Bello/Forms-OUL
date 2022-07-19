@@ -62,7 +62,7 @@ const TitularesForm = ({ formikProps }) => {
                 </div>
                 <div>
                   <label>
-                    Apellido materno
+                    Apellido materno<span>(opcional)</span>
                     <Field
                       type="text"
                       name={`titulares[${index}].apellidoMaterno`}
@@ -84,7 +84,7 @@ const TitularesForm = ({ formikProps }) => {
                 </div>
                 <div>
                   <label>
-                    Teléfono*
+                    Teléfono<span>(opcional)</span>
                     <Field
                       type="tel"
                       name={`titulares[${index}].telefono`}
@@ -157,7 +157,7 @@ const TitularesForm = ({ formikProps }) => {
                   </div>
                   <div>
                     <label>
-                      Número interior
+                      Número interior<span>(opcional)</span>
                       <Field
                         type="text"
                         name={`titulares[${index}].domicilio.numeroInterior`}
@@ -171,7 +171,7 @@ const TitularesForm = ({ formikProps }) => {
                   </div>
                   <div>
                     <label>
-                      Colonia*
+                      Colonia<span>(opcional)</span>
                       <Field
                         type="text"
                         name={`titulares[${index}].domicilio.colonia`}

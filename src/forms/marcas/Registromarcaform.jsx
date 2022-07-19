@@ -29,7 +29,7 @@ const Registromarcaform = () => {
       "Se requiere que seleciones un tipo de marca"
     ),
     nombreMarca: Yup.string().required("Se requiere que ingreses un nombre"),
-    logo: Yup.mixed().nullable(),
+    logo: Yup.mixed(),
     titulares: Yup.array().of(
       Yup.object({
         tipoTitular: Yup.string().required(
@@ -92,7 +92,7 @@ const Registromarcaform = () => {
       >
         {(formikProps) => (
           <Form>
-            <div>
+            <section>
               <h3>Solicitud</h3>
               <label>¿Tipo de marca que solicita?*</label>
               <label>
@@ -111,10 +111,10 @@ const Registromarcaform = () => {
                 />
               </label>
               <ErrorMessage name="tipoRegistro" render={renderError} />
-            </div>
+            </section>
 
             {formikProps.values.tipoRegistro === "marca" && (
-              <div>
+              <section>
                 <h3>Tipos de marca</h3>
                 <label>¿Qué tipo de marca deseas registrar?*</label>
                 <label>
@@ -130,10 +130,10 @@ const Registromarcaform = () => {
                   <Field type="radio" name="tipoMarca" value="mixta" />
                 </label>
                 <ErrorMessage name="tipoMarca" render={renderError} />
-              </div>
+              </section>
             )}
 
-            <div>
+            <section>
               <h3>Marca</h3>
               <div>
                 <label>
@@ -166,14 +166,14 @@ const Registromarcaform = () => {
                   <ErrorMessage name="logo" render={renderError} />
                 </div>
               )}
-            </div>
+            </section>
 
-            <div>
+            <section>
               <h3>Titular</h3>
               <TitularesForm formikProps={formikProps}></TitularesForm>
-            </div>
+            </section>
 
-            <div>
+            <section>
               <h3>Información general</h3>
               <div>
                 <label>
@@ -197,7 +197,7 @@ const Registromarcaform = () => {
                 </label>
                 <ErrorMessage name="enUso" render={renderError} />
               </div>
-            </div>
+            </section>
             <div>
               <button type="submit">Registrar</button>
             </div>
