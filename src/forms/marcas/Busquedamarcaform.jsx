@@ -12,9 +12,9 @@ const Busquedamarcaform = () => {
       email: "",
     },
     nombresMarca: {
-      option1: "",
-      option2: "",
-      option3: "",
+      opcion1: "",
+      opcion2: "",
+      opcion3: "",
     },
     descripcion: "",
   };
@@ -35,9 +35,9 @@ const Busquedamarcaform = () => {
         .email("El email no es válido"),
     }),
     nombresMarca: Yup.object({
-      option1: Yup.string().required("El nombre es requerido"),
-      option2: Yup.string(),
-      option3: Yup.string(),
+      opcion1: Yup.string().required("El nombre es requerido"),
+      opcion2: Yup.string(),
+      opcion3: Yup.string(),
     }),
     descripcion: Yup.string().required("La descripción es requerida"),
   });
@@ -121,36 +121,36 @@ const Busquedamarcaform = () => {
             <h4>Nombres de la marca</h4>
             <div>
               <label>
-                opcion 1*
+                opción 1*
                 <Field
-                  name="nombresMarca.option1"
+                  name="nombresMarca.opcion1"
                   type="text"
                   placeholder="Opción 1"
                 />
               </label>
-              <ErrorMessage name="nombresMarca.option1" render={renderError} />
+              <ErrorMessage name="nombresMarca.opcion1" render={renderError} />
             </div>
             <div>
               <label>
-                opcion 2<span>(opcional)</span>
+                opción 2<span>(opcional)</span>
                 <Field
-                  name="nombresMarca.option2"
+                  name="nombresMarca.opcion2"
                   type="text"
                   placeholder="Opción 2"
                 />
               </label>
-              <ErrorMessage name="nombresMarca.option2" render={renderError} />
+              <ErrorMessage name="nombresMarca.opcion2" render={renderError} />
             </div>
             <div>
               <label>
-                opcion 3<span>(opcional)</span>
+                opción 3<span>(opcional)</span>
                 <Field
-                  name="nombresMarca.option3"
+                  name="nombresMarca.opcion3"
                   type="text"
                   placeholder="Opción 3"
                 />
               </label>
-              <ErrorMessage name="nombresMarca.option3" render={renderError} />
+              <ErrorMessage name="nombresMarca.opcion3" render={renderError} />
             </div>
           </section>
 

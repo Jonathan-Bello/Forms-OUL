@@ -1,21 +1,19 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import defaultTitular from "./models/titular";
-import TitularesForm from "./TitularesForm";
+import InputArrayTitulares from "./components/InputArrayTitulares";
 import renderError from "../utils/renderError";
 import { useState } from "react";
 
 const Registromarcaform = () => {
   const [conlogo, setConlogo] = useState(true);
 
-  const initialValuesTitular = defaultTitular;
-
   const initialValues = {
     tipoRegistro: "marca",
     tipoMarca: "sinTipo",
     nombreMarca: "",
     logo: "",
-    titulares: [initialValuesTitular],
+    titulares: [defaultTitular],
     descripcion: "",
     enUso: "",
   };
@@ -170,7 +168,7 @@ const Registromarcaform = () => {
 
             <section>
               <h3>Titular</h3>
-              <TitularesForm formikProps={formikProps}></TitularesForm>
+              <InputArrayTitulares formikProps={formikProps} />
             </section>
 
             <section>

@@ -1,12 +1,9 @@
 import { Field, FieldArray, ErrorMessage } from "formik";
-import InputNationalidad from "./components/InputNationalidad";
-import defaultTitular from "./models/titular";
+import InputNationalidad from "../../components/InputNationalidad";
+import defaultTitular from "../models/titular";
+import renderError from "../../utils/renderError";
 
-const TitularesForm = ({ formikProps }) => {
-  const renderError = (message) => <b>{message}</b>;
-
-  const initialValuesTitular = defaultTitular;
-
+const InputArrayTitulares = ({ formikProps }) => {
   return (
     <FieldArray name="titulares">
       {(arrayHelpers) => (
@@ -230,7 +227,7 @@ const TitularesForm = ({ formikProps }) => {
             ))}
           <button
             type="button"
-            onClick={() => arrayHelpers.push(initialValuesTitular)}
+            onClick={() => arrayHelpers.push(defaultTitular)}
           >
             Agregar Titular
           </button>
@@ -243,4 +240,4 @@ const TitularesForm = ({ formikProps }) => {
   );
 };
 
-export default TitularesForm;
+export default InputArrayTitulares;
