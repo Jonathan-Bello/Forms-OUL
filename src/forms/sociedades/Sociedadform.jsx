@@ -4,6 +4,7 @@ import renderError from "../utils/renderError";
 import InputAdministracion from "./components/InputAdministracion";
 import InputArraySocios from "./components/InputArraySocios";
 import defaultSocio from "./models/socio";
+import defaultNameData from "./models/namedata";
 
 const Sociedadform = () => {
   // TODO: agregar validadción de numero de socios y porcentajes que den 100%
@@ -28,24 +29,13 @@ const Sociedadform = () => {
     },
     administracion: {
       tipoAdministracion: "",
-      administradorUnico: "",
-      otroAdministrador: {
-        nombre: "",
-        apellidoPaterno: "",
-        apellidoMaterno: "",
-      },
+      administradorUnico: defaultNameData,
+      otroAdministrador: defaultNameData,
       consejoAdministrativo: {
-        presidente: {
-          nombre: "",
-          apellidoPaterno: "",
-          apellidoMaterno: "",
-        },
+        presidente: defaultNameData,
+        otroPresidente: defaultNameData,
       },
-      comisario: {
-        nombre: "",
-        apellidoPaterno: "",
-        apellidoMaterno: "",
-      },
+      comisario: defaultNameData
     },
   };
 
@@ -100,9 +90,37 @@ const Sociedadform = () => {
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(false);
 
-          values.administracion.consejoAdministrativo.presidente = JSON.parse(
-            values.administracion.consejoAdministrativo.presidente
-          );
+          !values.administracion.otroAdministrador &&
+            (values.administracion.otroAdministrador = defaultNameData);
+
+          // adminitrador Unico
+          if (
+            values.administracion.administradorUnico.nombre !== "" &&
+            values.administracion.administradorUnico !== "Otro"
+          ) {
+            values.administracion.administradorUnico = JSON.parse(
+              values.administracion.administradorUnico
+            );
+          }
+          if (values.administracion.administradorUnico === "Otro") {
+            values.administracion.administradorUnico = {
+              ...values.administracion.otroAdministrador,
+            };
+          }
+
+          delete values.administracion.otroAdministrador;
+
+          values.administracion.consejoAdministrativo.presidente === "Otro"
+            ? (values.administracion.consejoAdministrativo.presidente = {
+                ...values.administracion.consejoAdministrativo.otroPresidente,
+              })
+            : (values.administracion.consejoAdministrativo.presidente =
+                JSON.parse(
+                  values.administracion.consejoAdministrativo.presidente
+                ));
+
+          delete values.administracion.consejoAdministrativo.otroPresidente;
+
           console.log(values);
         }}
       >

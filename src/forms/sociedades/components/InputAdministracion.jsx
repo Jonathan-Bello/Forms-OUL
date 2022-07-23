@@ -1,7 +1,10 @@
 import { ErrorMessage, Field } from "formik";
+import { useState } from "react";
 import renderError from "../../utils/renderError";
 
 const InputAdministracion = ({ formikProps }) => {
+  const [otroValue, setOtroValue] = useState(false);
+
   return (
     <section>
       <h3>Administración</h3>
@@ -38,7 +41,14 @@ const InputAdministracion = ({ formikProps }) => {
             >
               <option value="">Seleccione una opción</option>
               {formikProps.values.socios.map((socio, index) => (
-                <option key={index} value={socio.nombre}>
+                <option
+                  key={index}
+                  value={JSON.stringify({
+                    nombre: socio.nombre,
+                    apellidoPaterno: socio.apellidoPaterno,
+                    apellidoMaterno: socio.apellidoMaterno,
+                  })}
+                >
                   {socio.nombre} {socio.apellidoPaterno}
                 </option>
               ))}
@@ -126,6 +136,57 @@ const InputAdministracion = ({ formikProps }) => {
               <option value="Otro">Otro</option>
             </Field>
           </label>
+          <ErrorMessage
+            name="administracion.consejoAdministrativo.presidente"
+            render={renderError}
+          />
+          {formikProps.values.administracion.consejoAdministrativo
+            .presidente === "Otro" && (
+            <>
+              <div>
+                <label>
+                  Nombre*
+                  <Field
+                    type="text"
+                    name="administracion.consejoAdministrativo.otroPresidente.nombre"
+                    placeholder="Nombre"
+                  />
+                </label>
+                <ErrorMessage
+                  name="administracion.consejoAdministrativo.otroPresidente.nombre"
+                  render={renderError}
+                />
+              </div>
+              <div>
+                <label>
+                  Apellido Paterno*
+                  <Field
+                    type="text"
+                    name="administracion.consejoAdministrativo.otroPresidente.apellidoPaterno"
+                    placeholder="Apellido Paterno"
+                  />
+                </label>
+                <ErrorMessage
+                  name="administracion.consejoAdministrativo.otroPresidente.apellidoPaterno"
+                  render={renderError}
+                />
+              </div>
+              <div>
+                <label>
+                  Apellido Materno*
+                  <Field
+                    type="text"
+                    name="administracion.consejoAdministrativo.otroPresidente.apellidoMaterno"
+                    placeholder="Apellido Materno"
+                  />
+                </label>
+                <ErrorMessage
+                  name="administracion.consejoAdministrativo.otroPresidente.apellidoMaterno"
+                  render={renderError}
+                />
+              </div>
+            </>
+          )}
         </div>
       )}
       <div>
