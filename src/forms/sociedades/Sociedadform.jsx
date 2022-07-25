@@ -5,6 +5,7 @@ import InputAdministracion from "./components/InputAdministracion";
 import InputArraySocios from "./components/InputArraySocios";
 import defaultSocio from "./models/socio";
 import defaultNameData from "./models/namedata";
+import InputArchivos from "./components/InputArchivos";
 
 const Sociedadform = () => {
   // TODO: agregar validadción de numero de socios y porcentajes que den 100%
@@ -34,9 +35,12 @@ const Sociedadform = () => {
       consejoAdministrativo: {
         presidente: defaultNameData,
         otroPresidente: defaultNameData,
+        vicePresidente: defaultNameData,
+        otroVicePresidente: defaultNameData,
       },
-      comisario: defaultNameData
+      comisario: defaultNameData,
     },
+    archivos: {},
   };
 
   const validationSchema = Yup.object({
@@ -90,38 +94,39 @@ const Sociedadform = () => {
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(false);
 
-          !values.administracion.otroAdministrador &&
-            (values.administracion.otroAdministrador = defaultNameData);
-
           // adminitrador Unico
           if (
-            values.administracion.administradorUnico.nombre !== "" &&
-            values.administracion.administradorUnico !== "Otro"
+            values.administracion.tipoAdministracion === "Administrador único"
           ) {
-            values.administracion.administradorUnico = JSON.parse(
-              values.administracion.administradorUnico
-            );
-          }
-          if (values.administracion.administradorUnico === "Otro") {
-            values.administracion.administradorUnico = {
-              ...values.administracion.otroAdministrador,
-            };
-          }
-
-          delete values.administracion.otroAdministrador;
-
-          values.administracion.consejoAdministrativo.presidente === "Otro"
-            ? (values.administracion.consejoAdministrativo.presidente = {
-                ...values.administracion.consejoAdministrativo.otroPresidente,
-              })
-            : (values.administracion.consejoAdministrativo.presidente =
-                JSON.parse(
-                  values.administracion.consejoAdministrativo.presidente
+            values.administracion.administradorUnico === "Otro"
+              ? (values.administracion.administradorUnico = {
+                  ...values.administracion.otroAdministrador,
+                })
+              : (values.administracion.administradorUnico = JSON.parse(
+                  values.administracion.administradorUnico
                 ));
+          }
 
-          delete values.administracion.consejoAdministrativo.otroPresidente;
+          // consejo Administrativo
+          if (
+            values.administracion.tipoAdministracion ===
+            "Consejo de Administración"
+          ) {
+            values.administracion.consejoAdministrativo.presidente === "Otro"
+              ? (values.administracion.consejoAdministrativo.presidente = {
+                  ...values.administracion.consejoAdministrativo.otroPresidente,
+                })
+              : (values.administracion.consejoAdministrativo.presidente =
+                  JSON.parse(
+                    values.administracion.consejoAdministrativo.presidente
+                  ));
+          }
 
-          console.log(values);
+          // console.log(values);
+          const data = values;
+          delete data.administracion.otroAdministrador;
+          delete data.administracion.consejoAdministrativo.otroPresidente;
+          console.log(data);
         }}
       >
         {(formikProps) => (
@@ -306,6 +311,7 @@ const Sociedadform = () => {
 
             <InputAdministracion formikProps={formikProps} />
 
+            <InputArchivos {...formikProps} />
             <div>
               <button type="submit">Enviar</button>
             </div>

@@ -1,6 +1,7 @@
 import { ErrorMessage, Field } from "formik";
 import { useState } from "react";
 import renderError from "../../utils/renderError";
+import InputNombreData from "./InputNombreData";
 
 const InputAdministracion = ({ formikProps }) => {
   const [otroValue, setOtroValue] = useState(false);
@@ -58,52 +59,10 @@ const InputAdministracion = ({ formikProps }) => {
             <div>
               {formikProps.values.administracion.administradorUnico ===
                 "Otro" && (
-                <>
-                  <div>
-                    <label>
-                      Nombre*
-                      <Field
-                        type="text"
-                        name="administracion.otroAdministrador.nombre"
-                        placeholder="Nombre"
-                      />
-                    </label>
-                    <ErrorMessage
-                      name="administracion.otroAdministrador.nombre"
-                      render={renderError}
-                    />
-                  </div>
-
-                  <div>
-                    <label>
-                      Apellido Paterno*
-                      <Field
-                        type="text"
-                        name="administracion.otroAdministrador.apellidoPaterno"
-                        placeholder="Apellido Paterno"
-                      />
-                    </label>
-                    <ErrorMessage
-                      name="administracion.otroAdministrador.apellidoPaterno"
-                      render={renderError}
-                    />
-                  </div>
-
-                  <div>
-                    <label>
-                      Apellido Materno*
-                      <Field
-                        type="text"
-                        name="administracion.otroAdministrador.apellidoMaterno"
-                        placeholder="Apellido Materno"
-                      />
-                    </label>
-                    <ErrorMessage
-                      name="administracion.otroAdministrador.apellidoMaterno"
-                      render={renderError}
-                    />
-                  </div>
-                </>
+                <InputNombreData
+                  namegroup="administracion.otroAdministrador"
+                  isRequired={true}
+                />
               )}
             </div>
           </label>
@@ -142,91 +101,20 @@ const InputAdministracion = ({ formikProps }) => {
           />
           {formikProps.values.administracion.consejoAdministrativo
             .presidente === "Otro" && (
-            <>
-              <div>
-                <label>
-                  Nombre*
-                  <Field
-                    type="text"
-                    name="administracion.consejoAdministrativo.otroPresidente.nombre"
-                    placeholder="Nombre"
-                  />
-                </label>
-                <ErrorMessage
-                  name="administracion.consejoAdministrativo.otroPresidente.nombre"
-                  render={renderError}
-                />
-              </div>
-              <div>
-                <label>
-                  Apellido Paterno*
-                  <Field
-                    type="text"
-                    name="administracion.consejoAdministrativo.otroPresidente.apellidoPaterno"
-                    placeholder="Apellido Paterno"
-                  />
-                </label>
-                <ErrorMessage
-                  name="administracion.consejoAdministrativo.otroPresidente.apellidoPaterno"
-                  render={renderError}
-                />
-              </div>
-              <div>
-                <label>
-                  Apellido Materno*
-                  <Field
-                    type="text"
-                    name="administracion.consejoAdministrativo.otroPresidente.apellidoMaterno"
-                    placeholder="Apellido Materno"
-                  />
-                </label>
-                <ErrorMessage
-                  name="administracion.consejoAdministrativo.otroPresidente.apellidoMaterno"
-                  render={renderError}
-                />
-              </div>
-            </>
+            <InputNombreData
+              namegroup={"administracion.consejoAdministrativo.otroPresidente"}
+              isRequired={true}
+            />
           )}
         </div>
       )}
+
       <div>
         <label>¿Quién será el comisario de la sociedad?(Opcional)</label>
-        <div>
-          <label>
-            Nombre
-            <Field type="text" name="administracion.comisario.nombre" />
-          </label>
-          <ErrorMessage
-            name="administracion.comisario.nombre"
-            render={renderError}
-          />
-        </div>
-        <div>
-          <label>
-            Apellido paterno
-            <Field
-              type="text"
-              name="administracion.comisario.apellidoPaterno"
-            />
-          </label>
-          <ErrorMessage
-            name="administracion.comisario.apellidoPaterno"
-            render={renderError}
-          />
-        </div>
-        <div>
-          <label>
-            Apellido materno
-            <Field
-              type="text"
-              name="administracion.comisario.apellidoMaterno"
-            />
-          </label>
-          <ErrorMessage
-            name="administracion.comisario.apellidoMaterno"
-            render={renderError}
-          />
-        </div>
+        <InputNombreData
+          namegroup="administracion.comisario"
+          isRequired={false}
+        />
       </div>
     </section>
   );
